@@ -1,13 +1,27 @@
+@font-face {
+    font-family: "Apercu";
+    src: url("/fonts/Apercu-Regular.otf") format("otf"),
+  }
+
+body {
+    font-family: 'Apercu', sans-serif;
+}
+
+h1 {
+    font-weight: 300;
+}
+
 .text-center {
     text-align: center;
 }
 
 .healthbar {
     width: 80%;
-    height: 40px;
+    height: 25px;
     background-color: #eee;
     margin: auto;
     transition: width 500ms;
+    border-radius: 100px;
 }
 
 .controls, .log {
@@ -15,20 +29,17 @@
     text-align: center;
     padding: 10px;
     border: 1px solid #ccc;
-    box-shadow: 0px 3px 6px #ccc;
+    border-radius: 4px;
 }
 
 .turn {
     margin-top: 20px;
     margin-bottom: 20px;
-    font-weight: bold;
     font-size: 22px;
 }
 
 .log ul {
     list-style: none;
-    font-weight: bold;
-    text-transform: uppercase;
 }
 
 .log ul li {
@@ -36,59 +47,87 @@
 }
 
 .log ul .player-turn {
-    color: blue;
-    background-color: #e4e8ff;
+    color: #12B475;
+    background-color: #DDF8ED;
+    border-radius: 100px;
 }
 
 .log ul .monster-turn {
-    color: red;
-    background-color: #ffc0c1;
+    color: #FF3A39;
+    background-color: #FFDEDE;
+    border-radius: 100px;
+}
+
+.log ul .special-attack {
+    color: #4A90E2;
+    background-color: #DCEAFC;
+    border-radius: 100px;
+}
+
+.log ul .heal-message {
+    color: #A755EF;
+    background-color: #F2E6FD;
+    border-radius: 100px;
+}
+
+.log ul .gave-up-message {
+    color: #939393;
+    background-color: #F5F5F5;
+    border-radius: 100px;
 }
 
 button {
     font-size: 20px;
-    background-color: #eee;
-    padding: 12px;
-    box-shadow: 0 1px 1px black;
+    background-color: #F5F5F5;
+    color: #939393;
+    padding: 16px 25px;
     margin: 10px;
+    border-radius: 100px;
+}
+
+button:focus {
+    outline: 0;
 }
 
 #start-game {
-    background-color: #aaffb0;
+    background-color: #F5F5F5;
 }
 
 #start-game:hover {
-    background-color: #76ff7e;
+    background-color: #EFEDED;
 }
 
 #attack {
-    background-color: #ff7367;
+    background-color: #FFDEDE;
+    color: #FF5C5C;
 }
 
 #attack:hover {
-    background-color: #ff3f43;
+    background-color: #FACFCF;
 }
 
 #special-attack {
-    background-color: #ffaf4f;
+    background-color: #DCEAFC;
+    color: #4A90E2;
 }
 
 #special-attack:hover {
-    background-color: #ff9a2b;
+    background-color: #D1E3FB;
 }
 
 #heal {
-    background-color: #aaffb0;
+    background-color: #F2E6FD;
+    color: #A755EF;
 }
 
 #heal:hover {
-    background-color: #76ff7e;
+    background-color: #E9D9F8;
 }
 
 #give-up {
-    background-color: #ffffff;
+    background-color: #F5F5F5;
 }
 
 #give-up:hover {
-    background-color: #c7c7c7;
+    background-color: #EFEDED;
 }

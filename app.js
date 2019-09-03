@@ -4,7 +4,9 @@ new Vue({
         playerHealth: 100,
         monsterHealth: 100,
         gameIsRunning: false,
-        turns: []
+        turns: [],
+        heals: 5,
+        specialAttacks: 2
     },
     methods: {
         startGame: function() {
@@ -12,6 +14,8 @@ new Vue({
             this.playerHealth = 100;
             this.monsterHealth = 100;
             this.turns = [];
+            this.heals = 5;
+            this.specialAttacks = 2;
         },
         attack: function() {
             var damage = this.calculateDamage(5, 12);
@@ -28,10 +32,18 @@ new Vue({
             this.checkWin();
         },
         specialAttack: function() {
+            if (this.specialAttacks >= 1) {
+                this.specialAttacks = this.specialAttacks - 1;
+            } else {
+                this.turns.unshift({
+                    gaveUp: true,
+                    text: 'No more Special Attacks left!'     
+                }); return;
+            }
             var damage = this.calculateDamage(10, 20);
             this.monsterHealth -= damage;
             this.turns.unshift({
-                isPlayer: true,
+                isSpecialAttack: true,
                 text: 'Player hits Monster hard for ' + damage
             });
             if (this.checkWin()) {
@@ -41,20 +53,33 @@ new Vue({
             this.checkWin();
         },
         heal: function() {
+            if (this.heals >= 1) {
+                this.heals = this.heals - 1;
+            } else {
+                this.turns.unshift({
+                    gaveUp: true,
+                    text: 'No more heals left!'
+                    
+                }); return;
+            }
+            
             if(this.playerHealth <= 90) {
             this.playerHealth += 10;
-            this.turns.unshift({
-                isPlayer: true,
-                text: 'Player heals for 10.'
-            });
-            this.monsterAttack();
             } else {
                 this.playerHealth = 100;
             }
+            this.turns.unshift({
+                isHealing: true,
+                text: 'Player heals for 10.'
+            });
+            this.monsterAttack();
         },
         giveUp: function() {
             this.gameIsRunning = false;
-
+            this.turns.unshift({
+                gaveUp: true,
+                text: 'Player gives up.'
+            });
         },
         monsterAttack: function() {
             var damage = this.calculateDamage(5, 12);
